@@ -9,20 +9,21 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='senti-py',
+    name='spanish_sentiment_analysis',
     version='1.0.1',
     description='A sentiment analysis classifier in spanish.',
     long_description=long_description,
-    url='https://github.com/aylliote/senti-py',
-    download_url='https://github.com/aylliote/senti-py/archive/master.zip',
+    #url='https:\\github.com\aylliote\sentiment-spanish',
+    #download_url='https:\\github.com\aylliote\senti-py\archive\master.zip',
     author='Elliot Hofman',
     author_email='elliot.hofman@gmail.com',
-    license='Sondeos',
+    license='MIT',
+
+    # See https:\\pypi.python.org\pypi?%3Aaction=list_classifiers
     classifiers=[
         'Development Status :: 4 - Beta',
-        'Intended Audience :: Sondeos developpers',
         'Topic :: Software Development :: Build Tools',
-        'License :: OSI Approved :: Sondeos License',
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
@@ -31,16 +32,12 @@ setup(
 
     keywords='natural language processing sentiment analysis',
     #   packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    packages = ['classifier', 'crawlers'],
-    install_requires=['pandas', 'numpy', 'tqdm','nltk', 'sklearn', 'marisa-trie','spacy','es_core_web_md'],
-    extras_require={
-        'crawl': ['bs4', 'urllib']
-            },
-    data_files=[('data', ['classifier/data/sensaCineSerie.txt', 'classifier/data/sensaCineMovie.txt',
-                            'classifier/data/pedidosYa.txt', 'classifier/data/tripAdvisorHotel.txt',
-                            'classifier/data/tripAdvisorRestaurant.txt', 'classifier/data/tripAdvisorAttraction.rar',
-                            'classifier/data/openCine.txt', 'classifier/data/quejas.txt', 
-                            'classifier/data/apestan.rar', 'classifier/data/badTweets.txt',
-                        'classifier/data/goodTweets.txt', 'classifier/data/tassTweets.txt',
-                        'classifier/data/MercadoPos.rar', 'classifier/data/MercadoNeg.txt' ])]
+    packages = ['classifier'],
+    package_dir = {'classifier': 'classifier'},
+
+    package_data = {'classifier': ['data/dictConjug.json', 'data/Countries.txt', 'data/Cities.txt', 'data/expressions.txt', 'img/bad_baby.jpg', 'img/good_baby.jpg',
+    									'model/sentiment_pipeline.pkl']},
+
+
+    install_requires=['numpy','nltk', 'sklearn','marisa-trie','scipy']
 )
