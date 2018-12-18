@@ -339,7 +339,7 @@ def predict(x, sentimentPipeline, realVocab, verbose=False):
 
 def predictFromBulk(x):
 
-    return predict(x['text'], sentimentPipeline = x['pipe'], realVocab = x['realVocab'])
+    return {'score' : predict(x['text'], sentimentPipeline = x['pipe'], realVocab = x['realVocab']), 'id':x['id']}
 
 def printResult(x, sentimentPipeline, realVocab, verbose=False):
     p = predict(x, sentimentPipeline=sentimentPipeline, realVocab=realVocab, verbose=verbose)
@@ -379,16 +379,13 @@ class SentimentClassifier:
     def bulkPredict(self, text_array, thread_count = None, verbose = False, funny = False):
         
         thread_count = thread_count if thread_count is not None else cpu_count()
-        print(thread_count)
         pool = ThreadPool(thread_count)
 
         textArr = []
 
         for text in text_array:
-            textArr.append({'text': text, 'pipe':self.classifier, 'realVocab':self.vocabulary})
-        #predictX = partial(predict, sentimentPipeline = self.classifier, realVocab = self.vocabulary)
+            textArr.append({'text': text['text'], 'pipe':self.classifier, 'realVocab':self.vocabulary, 'id': text['id']})
 
         result = pool.map(predictFromBulk, textArr)
-        print(result)
 
         return result

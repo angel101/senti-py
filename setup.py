@@ -10,7 +10,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='spanish_sentiment_analysis',
-    version='1.0.1',
+    version='1.0.2',
     description='A sentiment analysis classifier in spanish.',
     long_description=long_description,
     #url='https:\\github.com\aylliote\sentiment-spanish',
