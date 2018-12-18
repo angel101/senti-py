@@ -1,3 +1,15 @@
+edit so it can install without any error and creation of multi-thread bulk sentiment prediction
+
+**USAGE:**
+
+	params:
+		- text < array < dict > > ex : [{"id" : 1, "text" : "hola"}, {"id" : 2, "text" : "mundo"}]
+	return:
+		- data < array < dict > > ex : [ {"id" : 1, "sentiment": "positive", "sentiment_percentage": 0.823756}]
+	.. code::
+
+		sentiment = self.classifier.bulkPredict(data['text'])
+
 Author : Elliot Hofman
 
 This is a package to perform sentiment analysis in spanish.
